@@ -9,13 +9,29 @@ public class PilotScreen : MonoBehaviour
     public List<GameObject> screenPanels; // List of screenpanel gameobjects, can be added to dynamicaly in runtime
     private int screenPanelNum;
 
-    public GameObject communicationsObj;
+    public GameObject communicationsObj; // Communications Panel
+
+    public GameObject keyboardButtonL;
+    public GameObject keyboardButtonR;
 
     [Header("Panels:")]
     public ShipStatusPanel shipStatusPanel;
 
-    void NextPanel(bool reverse=false)
+    [Header("Audio:")]
+    private AudioSource localAudioSource;
+    public AudioSource keyboardAudioSource;
+    public AudioClip keyboardType;
+    public AudioClip computerBeep;
+
+    public void KeyboardPressed()
     {
+        keyboardAudioSource.PlayOneShot(keyboardType);
+    }
+
+    public void NextPanel(bool reverse=false)
+    {
+        localAudioSource.PlayOneShot(computerBeep);
+
         screenPanels[screenPanelNum].SetActive(false);
 
         // Add or remove one from screenPanelNum
@@ -39,9 +55,19 @@ public class PilotScreen : MonoBehaviour
     public void DiagnosisFinished()
     {
         screenPanels.Add(communicationsObj);
+
+        // Enable keyboard Left and Right arrows!
+        keyboardButtonL.SetActive(true);
+        keyboardButtonR.SetActive(true);
     }
 
+    
 
+
+
+    private void Start() {
+        localAudioSource = gameObject.GetComponent<AudioSource>();
+    }    
 
     // Update is called once per frame
     void Update()
