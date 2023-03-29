@@ -11,11 +11,13 @@ public class PilotScreen : MonoBehaviour
 
     public GameObject communicationsObj; // Communications Panel
 
+    public GameObject keyboardCenter;
     public GameObject keyboardButtonL;
     public GameObject keyboardButtonR;
 
     [Header("Panels:")]
     public ShipStatusPanel shipStatusPanel;
+     
 
     [Header("Audio:")]
     private AudioSource localAudioSource;
@@ -26,6 +28,25 @@ public class PilotScreen : MonoBehaviour
     public void KeyboardPressed()
     {
         keyboardAudioSource.PlayOneShot(keyboardType);
+
+        
+        switch (screenPanelNum)
+        {
+            case (0): // On Ship status panel
+                shipStatusPanel.KeyboardPressed();
+                break;
+
+            case (1): // Communications Panel
+                break;
+
+            case (2): // Engineer status panel
+                break;
+        }
+    }
+
+    public void EnableKeyboard(bool enabled)
+    {
+        keyboardCenter.SetActive(enabled);
     }
 
     public void NextPanel(bool reverse=false)
@@ -50,6 +71,7 @@ public class PilotScreen : MonoBehaviour
         }
 
         screenPanels[screenPanelNum].SetActive(true);
+        screenPanels[screenPanelNum].SendMessage("Selected", SendMessageOptions.DontRequireReceiver);
     }
 
     public void DiagnosisFinished()
@@ -69,15 +91,6 @@ public class PilotScreen : MonoBehaviour
         localAudioSource = gameObject.GetComponent<AudioSource>();
     }    
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(test1)
-        {
-            test1 = false;
-            shipStatusPanel.StartDiagnosis();
-        }
-    }
 
 
     

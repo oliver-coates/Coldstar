@@ -9,17 +9,33 @@ public class ShipStatusPanel : MonoBehaviour
     public PilotScreen pilotScreen;
     public GameObject shipStatsObject;
 
+    public bool shownDiagnosis;
 
 
     [Header("Texts:")]
     public TextMeshPro runDiagnosisText;
     public TextMeshPro problemsListText;
 
-
-    public void StartDiagnosis()
+    public void Selected()
     {
-        StartCoroutine(RunDiagnosis());
+        if (shownDiagnosis)
+        {
+            pilotScreen.EnableKeyboard(false);
+        }
+        else
+        {
+            pilotScreen.EnableKeyboard(true);
+        }
+        
     }
+
+    public void KeyboardPressed()
+    {
+        shownDiagnosis = true;
+        StartCoroutine(RunDiagnosis());
+        pilotScreen.EnableKeyboard(false);
+    }
+
 
     public IEnumerator RunDiagnosis()
     {
