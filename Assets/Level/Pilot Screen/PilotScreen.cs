@@ -8,7 +8,7 @@ public class PilotScreen : MonoBehaviour
     private int screenPanelNum;
 
     public GameObject communicationsObj; // Communications Panel
-    
+    public GameObject enginerObj; // Engineer Panel
 
     public GameObject keyboardCenter;
     public GameObject keyboardButtonL;
