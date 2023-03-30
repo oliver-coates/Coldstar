@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PilotScreen : MonoBehaviour
 {
-    public bool test1;
-
     public List<GameObject> screenPanels; // List of screenpanel gameobjects, can be added to dynamicaly in runtime
     private int screenPanelNum;
 
     public GameObject communicationsObj; // Communications Panel
+    
 
     public GameObject keyboardCenter;
     public GameObject keyboardButtonL;
@@ -17,7 +16,7 @@ public class PilotScreen : MonoBehaviour
 
     [Header("Panels:")]
     public ShipStatusPanel shipStatusPanel;
-     
+    public CommunicationsPanel communicationsPanel; 
 
     [Header("Audio:")]
     private AudioSource localAudioSource;
@@ -37,6 +36,7 @@ public class PilotScreen : MonoBehaviour
                 break;
 
             case (1): // Communications Panel
+                communicationsPanel.KeyboardPressed();
                 break;
 
             case (2): // Engineer status panel

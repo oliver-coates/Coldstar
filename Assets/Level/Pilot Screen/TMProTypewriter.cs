@@ -5,15 +5,30 @@ using TMPro;
 
 public class TMProTypewriter : MonoBehaviour
 {
+    public TextMeshPro defaultText;
+
+
     public float Type(string message, TextMeshPro text, float letterPrintTime)
     {
-        char[] characters = message.ToCharArray();
-        StartCoroutine(typeWriter("", characters, text, letterPrintTime));
-
-        return (characters.Length * letterPrintTime); // Return time taken
+        return TypeM("", message, text, letterPrintTime);
     }
 
     public float Type(string startingMessage, string message, TextMeshPro text, float letterPrintTime)
+    {
+        return TypeM(startingMessage, message, text, letterPrintTime);
+    }
+
+    public float Type(string startingMessage, string message, float letterPrintTime)
+    {
+        return TypeM(startingMessage, message, defaultText, letterPrintTime);
+    }
+
+    public float Type(string message, float letterPrintTime)
+    {
+        return TypeM("", message, defaultText, letterPrintTime);
+    }
+
+    private float TypeM(string startingMessage, string message, TextMeshPro text, float letterPrintTime)
     {
         char[] characters = message.ToCharArray();
         StartCoroutine(typeWriter(startingMessage, characters, text, letterPrintTime));
