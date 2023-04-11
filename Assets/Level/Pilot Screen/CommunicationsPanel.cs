@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.ComponentModel;
 
 public class CommunicationsPanel : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class CommunicationsPanel : MonoBehaviour
 
     public void Selected()
     {
-        pilotScreen.EnableKeyboard(true);
+        pilotScreen.EnableKeyboard(allowKeyboard);
     }
 
     public void Awake()
@@ -47,12 +48,14 @@ public class CommunicationsPanel : MonoBehaviour
 
         dialogue1[14] = new TerminalDialogue(actorType.ENGINEER, "please", 4f);
 
-        dialogue1[15] = new TerminalDialogue(actorType.PLAYER, "I don't think there isn't anyone else alive onboard", 0f);
+        dialogue1[15] = new TerminalDialogue(actorType.PLAYER, "There isn't anyone else alive onboard", 0f);
         dialogue1[16] = new TerminalDialogue(actorType.PLAYER, "You need to repair the engine asap", 0f);
         dialogue1[17] = new TerminalDialogue(actorType.PLAYER, "Engineer? Are you there?", 0f);
 
 
         StartCoroutine(Startup());
+        pilotScreen.EnableScreenSwitch(false);
+        pilotScreen.EnableKeyboard(false);
     }
 
     public void KeyboardPressed()
@@ -71,6 +74,7 @@ public class CommunicationsPanel : MonoBehaviour
                 {
                     allowKeyboard = false;
                     pilotScreen.EnableKeyboard(false);
+                    StartCoroutine(EngineerDialogue());
 
                     state = ScreenState.WORKING;
                     break;
@@ -80,6 +84,7 @@ public class CommunicationsPanel : MonoBehaviour
                     playerRequestDialogueInput = true;
                     pilotScreen.EnableKeyboard(false);
                     allowKeyboard = false;
+                    
                     break;
                 }
         }
@@ -87,6 +92,9 @@ public class CommunicationsPanel : MonoBehaviour
 
     public IEnumerator Startup()
     {
+        allowKeyboard = false;
+        pilotScreen.EnableKeyboard(false);
+
         yield return new WaitForSeconds(typewriter.Type("", ". . .", 0.02f));
         yield return new WaitForSeconds(0.75f);
         yield return new WaitForSeconds(typewriter.Type("", "5sa./ ///a##2 aax72/n1   as__2z", 0.02f));
@@ -121,7 +129,7 @@ public class CommunicationsPanel : MonoBehaviour
         allowKeyboard = true;
         pilotScreen.EnableKeyboard(true);
   
-        StartCoroutine(EngineerDialogue());
+        
     }
 
     public IEnumerator EngineerDialogue()
@@ -133,13 +141,21 @@ public class CommunicationsPanel : MonoBehaviour
 
         while (showingDialogue)
         {
+            if (iteration == dialogue1.Length)
+            {
+                pilotScreen.EnableScreenSwitch(true);
+                allowKeyboard = false;
+                pilotScreen.EngineerDialogueFinished();
+                break;
+            }
+
             TerminalDialogue dialogue = dialogue1[iteration];
 
             if (dialogue.actor == actorType.ENGINEER)
             {
                 yield return new WaitForSeconds(dialogue.waitTime);
 
-                string formatted = "\n<size=20><color=#d1af19>T5 > </color></size>" + dialogue.content;
+                string formatted = "\n<size=20><color=#d1af19>T5 > </color>" + dialogue.content + "</size>" ;
 
                 megaString += formatted;
 

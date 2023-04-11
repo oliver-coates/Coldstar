@@ -17,6 +17,7 @@ public class PilotScreen : MonoBehaviour
     [Header("Panels:")]
     public ShipStatusPanel shipStatusPanel;
     public CommunicationsPanel communicationsPanel; 
+    public EngineerPanel engineerPanel;
 
     [Header("Audio:")]
     private AudioSource localAudioSource;
@@ -40,6 +41,7 @@ public class PilotScreen : MonoBehaviour
                 break;
 
             case (2): // Engineer status panel
+                engineerPanel.KeyboardPressed();
                 break;
         }
     }
@@ -47,6 +49,12 @@ public class PilotScreen : MonoBehaviour
     public void EnableKeyboard(bool enabled)
     {
         keyboardCenter.SetActive(enabled);
+    }
+
+    public void EnableScreenSwitch(bool enabled)
+    {
+        keyboardButtonL.SetActive(enabled);
+        keyboardButtonR.SetActive(enabled);
     }
 
     public void NextPanel(bool reverse=false)
@@ -83,7 +91,16 @@ public class PilotScreen : MonoBehaviour
         keyboardButtonR.SetActive(true);
     }
 
-    
+    public void EngineerDialogueFinished()
+    {
+        screenPanels.Add(enginerObj);
+    }
+
+    public void ChipRemoved()
+    {
+        engineerPanel.safetyChipDisabled = true;
+    }
+
 
 
 
