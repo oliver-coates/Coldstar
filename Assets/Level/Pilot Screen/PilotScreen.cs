@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class PilotScreen : MonoBehaviour
 {
-    public bool test1;
-
     public List<GameObject> screenPanels; // List of screenpanel gameobjects, can be added to dynamicaly in runtime
     private int screenPanelNum;
 
     public GameObject communicationsObj; // Communications Panel
+    public GameObject enginerObj; // Engineer Panel
 
+    public GameObject keyboardCenter;
     public GameObject keyboardButtonL;
     public GameObject keyboardButtonR;
 
     [Header("Panels:")]
     public ShipStatusPanel shipStatusPanel;
+    public CommunicationsPanel communicationsPanel; 
+    public EngineerPanel engineerPanel;
 
     [Header("Audio:")]
     private AudioSource localAudioSource;
@@ -26,6 +28,33 @@ public class PilotScreen : MonoBehaviour
     public void KeyboardPressed()
     {
         keyboardAudioSource.PlayOneShot(keyboardType);
+
+        
+        switch (screenPanelNum)
+        {
+            case (0): // On Ship status panel
+                shipStatusPanel.KeyboardPressed();
+                break;
+
+            case (1): // Communications Panel
+                communicationsPanel.KeyboardPressed();
+                break;
+
+            case (2): // Engineer status panel
+                engineerPanel.KeyboardPressed();
+                break;
+        }
+    }
+
+    public void EnableKeyboard(bool enabled)
+    {
+        keyboardCenter.SetActive(enabled);
+    }
+
+    public void EnableScreenSwitch(bool enabled)
+    {
+        keyboardButtonL.SetActive(enabled);
+        keyboardButtonR.SetActive(enabled);
     }
 
     public void NextPanel(bool reverse=false)
@@ -50,6 +79,7 @@ public class PilotScreen : MonoBehaviour
         }
 
         screenPanels[screenPanelNum].SetActive(true);
+        screenPanels[screenPanelNum].SendMessage("Selected", SendMessageOptions.DontRequireReceiver);
     }
 
     public void DiagnosisFinished()
@@ -61,7 +91,16 @@ public class PilotScreen : MonoBehaviour
         keyboardButtonR.SetActive(true);
     }
 
-    
+    public void EngineerDialogueFinished()
+    {
+        screenPanels.Add(enginerObj);
+    }
+
+    public void ChipRemoved()
+    {
+        engineerPanel.safetyChipDisabled = true;
+    }
+
 
 
 
@@ -69,15 +108,6 @@ public class PilotScreen : MonoBehaviour
         localAudioSource = gameObject.GetComponent<AudioSource>();
     }    
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(test1)
-        {
-            test1 = false;
-            shipStatusPanel.StartDiagnosis();
-        }
-    }
 
 
     

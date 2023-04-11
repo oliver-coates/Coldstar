@@ -9,21 +9,39 @@ public class ShipStatusPanel : MonoBehaviour
     public PilotScreen pilotScreen;
     public GameObject shipStatsObject;
 
+    public bool shownDiagnosis;
 
+    public bool allowKeyboard;
 
     [Header("Texts:")]
     public TextMeshPro runDiagnosisText;
     public TextMeshPro problemsListText;
 
-
-    public void StartDiagnosis()
+    public void Selected()
     {
+        pilotScreen.EnableKeyboard(allowKeyboard);
+        
+    }
+
+    private void Start()
+    {
+        allowKeyboard = true;
+    }
+
+    public void KeyboardPressed()
+    {
+        shownDiagnosis = true;
+        
+        allowKeyboard = false;
+        pilotScreen.EnableKeyboard(false);
+
         StartCoroutine(RunDiagnosis());
     }
 
+
     public IEnumerator RunDiagnosis()
     {
-        yield return new WaitForSeconds(0.25f);
+        //yield return new WaitForSeconds(0.75f);
         yield return new WaitForSeconds(typewriter.Type("..#F./xx0x.2?  a//;lv 77yxl/ba2 ,,/s55a", runDiagnosisText, 0.02f));
         yield return new WaitForSeconds(0.5f);
         runDiagnosisText.text = "";
