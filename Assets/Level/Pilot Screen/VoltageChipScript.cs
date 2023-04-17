@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Screwdriver : MonoBehaviour
+public class VoltageChipScript : MonoBehaviour
 {
-    // Screwdriver script attached to the box collider of the tip of the screwdriver
     public Rigidbody rb;
 
     public Animator handL;
@@ -12,12 +11,12 @@ public class Screwdriver : MonoBehaviour
     public void Grabbed()
     {
         rb.isKinematic = true;
-        handL.SetBool("grippingScrewdriver", true);
+        handL.SetBool("grippingChip", true);
     }
 
     public void Dropped()
     {
         rb.isKinematic = false;
-        handL.SetBool("grippingScrewdriver", false);
+        handL.SetBool("grippingChip", false);
     }
 }
