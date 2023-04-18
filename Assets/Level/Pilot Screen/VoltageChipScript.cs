@@ -8,8 +8,15 @@ public class VoltageChipScript : MonoBehaviour
 
     public Animator handL;
 
+    bool ignoreFirst = true;
+
     public void Grabbed()
     {
+        if (ignoreFirst)
+        {
+            ignoreFirst = false;
+            return;
+        }
         rb.isKinematic = true;
         handL.SetBool("grippingChip", true);
     }
