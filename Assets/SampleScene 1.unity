@@ -8270,6 +8270,8 @@ MonoBehaviour:
   typewriter: {fileID: 1826244159}
   pilotScreen: {fileID: 1826244158}
   shipStatsObject: {fileID: 1805277349}
+  shownDiagnosis: 0
+  allowKeyboard: 0
   runDiagnosisText: {fileID: 631969211}
   problemsListText: {fileID: 439691226}
 --- !u!1 &832575517
@@ -17460,13 +17462,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67fdcb85808a4b041b91113e17f7d4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test1: 0
   screenPanels:
   - {fileID: 825339094}
   communicationsObj: {fileID: 1817125291}
+  enginerObj: {fileID: 0}
+  keyboardCenter: {fileID: 0}
   keyboardButtonL: {fileID: 1819680042}
   keyboardButtonR: {fileID: 1173353801}
   shipStatusPanel: {fileID: 825339096}
+  communicationsPanel: {fileID: 0}
+  engineerPanel: {fileID: 0}
   keyboardAudioSource: {fileID: 608906700}
   keyboardType: {fileID: 8300000, guid: 78c25dfca0246ee498a403b4a21772ea, type: 3}
   computerBeep: {fileID: 8300000, guid: 609b3560a7275f24aa7af11bbc577b3b, type: 3}
@@ -17482,6 +17487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eede03265dcbfc479c1a3be0b4139c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultText: {fileID: 0}
 --- !u!82 &1826244160
 AudioSource:
   m_ObjectHideFlags: 0
