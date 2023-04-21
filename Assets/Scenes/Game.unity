@@ -10739,6 +10739,7 @@ MonoBehaviour:
   isFading: 0
   fadeAmount: 0
   fadeSpeed: 0.5
+  fadeInAtStartOfScene: 1
 --- !u!1 &2050428594
 GameObject:
   m_ObjectHideFlags: 0
