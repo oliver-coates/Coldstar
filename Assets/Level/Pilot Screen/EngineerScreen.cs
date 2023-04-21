@@ -23,6 +23,8 @@ public class EngineerPanel : MonoBehaviour
 
     public FadeToBlackScript fade;
 
+    public ButtonScript button;
+
     public void Selected()
     {
         pilotScreen.EnableKeyboard(allowKeyboard);
@@ -39,6 +41,12 @@ public class EngineerPanel : MonoBehaviour
         {
             // Flash warning message
             StartCoroutine(WarningMessage());
+            
+            // Allow the button to be used
+            if (button.isAllowed() == false)
+            {
+                button.AllowButton();
+            }
         }
         else if (engineerKilled == false)
         {
