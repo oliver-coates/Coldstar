@@ -966,6 +966,7 @@ MonoBehaviour:
     texts: []
   hullIntegrity: 0
   timeToCollision: 900
+  fade: {fileID: 2022653532}
 --- !u!1 &127810130
 GameObject:
   m_ObjectHideFlags: 0

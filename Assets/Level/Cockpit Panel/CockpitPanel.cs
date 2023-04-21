@@ -17,6 +17,9 @@ public class CockpitPanel : MonoBehaviour
     public float timeToCollision = 900;
     private string timeToCollisionString;
     private bool shipEscaping;
+    private bool shipDestroyed;
+
+    public FadeToBlackScript fade;
 
     void Start()
     {
@@ -59,6 +62,14 @@ public class CockpitPanel : MonoBehaviour
         textMesh.text = text;
 
         yield return new WaitForSeconds(waitTime);
+
+        // Check for ship breakup
+        if (timeElapsed >= timeToCollision && !shipEscaping && !shipDestroyed)
+        {
+            shipDestroyed = true;
+            StartCoroutine(fade.PlayerLose());
+            yield break;
+        }
 
         StartCoroutine(cycleText());
     }
