@@ -109,6 +109,17 @@ public class PilotScreen : MonoBehaviour
     }    
 
 
+    public void EngineFixed()
+    {
+        shipStatusPanel.engineFixed = true;
+    }
 
-    
+    /*private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            EngineFixed();
+        }
+    }*/
+
 }

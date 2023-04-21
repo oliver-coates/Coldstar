@@ -16,6 +16,7 @@ public class CockpitPanel : MonoBehaviour
     private string hullIntegrityString;
     public float timeToCollision = 900;
     private string timeToCollisionString;
+    private bool shipEscaping;
 
     void Start()
     {
@@ -77,6 +78,11 @@ public class CockpitPanel : MonoBehaviour
                                     "<size=50>HULL INTEGRITY DROPPING</size>\n\n" +
                                     "<size=65>HULL INTEGRITY:</size>\n" +
                                     "<size=80><color=#e0c62f>" + hullIntegrityString + "</color></size>", 2f);
+    }
+
+    public void Halt()
+    {
+        shipEscaping = true;
     }
 }
 

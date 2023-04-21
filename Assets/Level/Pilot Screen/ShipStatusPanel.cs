@@ -9,9 +9,14 @@ public class ShipStatusPanel : MonoBehaviour
     public PilotScreen pilotScreen;
     public GameObject shipStatsObject;
 
+    public CockpitPanel warningScreen;
+    public FadeToBlackScript fade;
+
     public bool shownDiagnosis;
 
     public bool allowKeyboard;
+
+    public bool engineFixed;
 
     [Header("Texts:")]
     public TextMeshPro runDiagnosisText;
@@ -20,7 +25,10 @@ public class ShipStatusPanel : MonoBehaviour
     public void Selected()
     {
         pilotScreen.EnableKeyboard(allowKeyboard);
-        
+        if (engineFixed)
+        {
+            StartCoroutine(EngineFixedText());
+        }
     }
 
     private void Start()
@@ -30,12 +38,19 @@ public class ShipStatusPanel : MonoBehaviour
 
     public void KeyboardPressed()
     {
-        shownDiagnosis = true;
-        
-        allowKeyboard = false;
-        pilotScreen.EnableKeyboard(false);
+        if (engineFixed)
+        {
+            StartCoroutine(AutopilotWorking());
+        }
+        else
+        {
+            shownDiagnosis = true;
 
-        StartCoroutine(RunDiagnosis());
+            allowKeyboard = false;
+            pilotScreen.EnableKeyboard(false);
+
+            StartCoroutine(RunDiagnosis());
+        }
     }
 
 
@@ -78,5 +93,38 @@ public class ShipStatusPanel : MonoBehaviour
     
         pilotScreen.DiagnosisFinished();
     }
-    
+
+    public IEnumerator EngineFixedText()
+    {
+        shipStatsObject.SetActive(false);
+
+        allowKeyboard = false;
+        pilotScreen.EnableKeyboard(false);
+        pilotScreen.EnableScreenSwitch(false);
+
+        yield return new WaitForSeconds(typewriter.Type("..#F./xx0x.2?  a//;lv 77yxl/ba2 ,,/s55a", runDiagnosisText, 0.02f));
+        yield return new WaitForSeconds(0.5f);
+        runDiagnosisText.text = "";
+        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(typewriter.Type("<size=40>Left Engine: <color=#31d428>Operational</color>\n\nEscape Vector: <color=#d4d128>Found</color>\n\nInitiate Autopilot? (Y/N)</size>", runDiagnosisText, 0.02f));
+
+        allowKeyboard = true;
+        pilotScreen.EnableKeyboard(true);
+    }
+
+    public IEnumerator AutopilotWorking()
+    {
+        shipStatsObject.SetActive(false);
+
+        allowKeyboard = false;
+        pilotScreen.EnableKeyboard(false);
+
+        warningScreen.Halt(); // Let the warning screen know that the ship is leaving and the player has won, prevents it from playing the losing code
+
+        yield return new WaitForSeconds(typewriter.Type("Autopilot underway...", runDiagnosisText, 0.02f));
+        yield return new WaitForSeconds(0.5f);
+
+        StartCoroutine(fade.PlayerWin());
+    }
+
 }
