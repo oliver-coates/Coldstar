@@ -229,7 +229,7 @@ MonoBehaviour:
   readerLight: {fileID: 8334398481523360304}
   lockedColor: {r: 0.6981132, g: 0.24697402, b: 0.24697402, a: 1}
   openColor: {r: 0.22414559, g: 0.6509434, b: 0.2476479, a: 1}
-  openSound: {fileID: 0}
+  openSound: {fileID: 8300000, guid: 0f3e39f1e56543c4ea5592319d49dd82, type: 3}
   audioSource: {fileID: 8334398480489850667}
   lockBox: {fileID: 8376819335909664994}
 --- !u!82 &8334398480489850667
@@ -244,7 +244,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

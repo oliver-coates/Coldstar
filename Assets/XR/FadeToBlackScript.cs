@@ -20,6 +20,10 @@ public class FadeToBlackScript : MonoBehaviour
     public TextMeshProUGUI loseText1;
     public TextMeshProUGUI loseText2;
 
+    public AudioSource aud;
+    public AudioClip deathSound;
+    public AudioClip winSound;
+
     public void Start()
     {
         if (fadeInAtStartOfScene)
@@ -73,6 +77,7 @@ public class FadeToBlackScript : MonoBehaviour
 
     public IEnumerator PlayerWin()
     {
+        aud.PlayOneShot(winSound);
         StartCoroutine(FadeToBlack());
         yield return new WaitForSeconds(2f);
         StartCoroutine(FadeTextIn(winText1));
@@ -84,6 +89,7 @@ public class FadeToBlackScript : MonoBehaviour
 
     public IEnumerator PlayerLose()
     {
+        aud.PlayOneShot(deathSound);
         StartCoroutine(FadeToBlack());
         yield return new WaitForSeconds(2f);
         StartCoroutine(FadeTextIn(loseText1));
