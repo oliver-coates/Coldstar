@@ -19,6 +19,8 @@ public class CockpitPanel : MonoBehaviour
     private bool shipEscaping;
     private bool shipDestroyed;
 
+    public bool inEngineerBay;
+
     public FadeToBlackScript fade;
 
     void Start()
@@ -64,7 +66,7 @@ public class CockpitPanel : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
 
         // Check for ship breakup
-        if (timeElapsed >= timeToCollision && !shipEscaping && !shipDestroyed)
+        if (timeElapsed >= timeToCollision && !shipEscaping && !shipDestroyed && !inEngineerBay)
         {
             shipDestroyed = true;
             StartCoroutine(fade.PlayerLose());
