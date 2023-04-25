@@ -4450,9 +4450,9 @@ MonoBehaviour:
   button: {fileID: 919132148683785001}
   engineerAudiosource: {fileID: 1004791803}
   engineerScream: {fileID: 8300000, guid: 4a1e9bd33d5ea264583c65e7616fd73a, type: 3}
-  XRorigin: {fileID: 0}
-  cockpitAnchor: {fileID: 0}
-  enginebayAnchor: {fileID: 0}
+  XRorigin: {fileID: 2050428594}
+  cockpitAnchor: {fileID: 1336946349}
+  enginebayAnchor: {fileID: 1897706068}
 --- !u!1 &510237277
 GameObject:
   m_ObjectHideFlags: 0
