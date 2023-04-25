@@ -96,9 +96,10 @@ public class EngineerPanel : MonoBehaviour
         inputText.text = "Working...";
 
         // Play screaming sound
+        yield return new WaitForSeconds(1.5f);
         engineerAudiosource.PlayOneShot(engineerScream);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
 
         KillEngineer();
         
@@ -149,12 +150,13 @@ public class EngineerPanel : MonoBehaviour
         // fade
         StartCoroutine(fade.FadeToBlack());
 
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(4f);
 
         // Teleport player
         XRorigin.transform.position = enginebayAnchor.position;
 
-        // fade in
+        // fade out
+        yield return new WaitForSeconds(1f);
         StartCoroutine(fade.FadeOut());
 
 
