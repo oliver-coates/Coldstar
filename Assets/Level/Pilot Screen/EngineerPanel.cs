@@ -28,6 +28,10 @@ public class EngineerPanel : MonoBehaviour
     public AudioSource engineerAudiosource;
     public AudioClip engineerScream;
 
+    public GameObject XRorigin;
+    public Transform cockpitAnchor;
+    public Transform enginebayAnchor;
+
     public void Selected()
     {
         pilotScreen.EnableKeyboard(allowKeyboard);
@@ -144,6 +148,14 @@ public class EngineerPanel : MonoBehaviour
 
         // fade
         StartCoroutine(fade.FadeToBlack());
+
+        yield return new WaitForSeconds(1.2f);
+
+        // Teleport player
+        XRorigin.transform.position = enginebayAnchor.position;
+
+        // fade in
+        StartCoroutine(fade.FadeOut());
 
 
     }
