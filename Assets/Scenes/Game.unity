@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.001100228, g: 0.0008025794, b: 0.0008223335, a: 1}
+  m_IndirectSpecularColor: {r: 0.0011006934, g: 0.00080192473, b: 0.00082292076, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4433,7 +4433,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 461447775}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8deab7fd1231bbe42822cb7e1c36e411, type: 3}
+  m_Script: {fileID: 11500000, guid: ebb6f9ced66c68a4baa4ed2aff187d67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pilotScreen: {fileID: 1826244158}
@@ -8698,7 +8698,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 1200
+  MaxDistance: 3000
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -11010,7 +11010,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336946348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.3}
+  m_LocalPosition: {x: 0, y: 0.625, z: -0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14745,7 +14745,7 @@ MonoBehaviour:
   keyboardButtonR: {fileID: 1173353801}
   shipStatusPanel: {fileID: 825339096}
   communicationsPanel: {fileID: 1817125293}
-  engineerPanel: {fileID: 461447777}
+  engineerPanel: {fileID: 0}
   keyboardAudioSource: {fileID: 608906700}
   keyboardType: {fileID: 8300000, guid: 78c25dfca0246ee498a403b4a21772ea, type: 3}
   computerBeep: {fileID: 8300000, guid: 609b3560a7275f24aa7af11bbc577b3b, type: 3}
@@ -15982,7 +15982,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897706067}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.339, y: 0, z: -33.219}
+  m_LocalPosition: {x: -0.339, y: 0.625, z: -33.219}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17130,7 +17130,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050428594}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.3, z: -0.32}
+  m_LocalPosition: {x: 0, y: 0.625, z: -0.32}
   m_LocalScale: {x: 2.2222223, y: 2.2222223, z: 2.2222223}
   m_ConstrainProportionsScale: 0
   m_Children:
