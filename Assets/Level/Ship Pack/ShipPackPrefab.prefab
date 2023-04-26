@@ -96,6 +96,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2913563067373181337, guid: 3e0e6bb3380c02a428d145934b289775,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6aa1e4c12e2d2c64194d62e364692b18, type: 2}
     - target: {fileID: 5563758676810985225, guid: 3e0e6bb3380c02a428d145934b289775,
         type: 3}
       propertyPath: m_Name
@@ -176,6 +181,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 5744798858791542416, guid: 9ce99013ca75d3f4e87af2b043854bd2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: aa99aae24ec675f4e86c50df91d8b2c6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ce99013ca75d3f4e87af2b043854bd2, type: 3}
 --- !u!4 &5403011636793686956 stripped
@@ -196,6 +206,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall Window
       objectReference: {fileID: 0}
+    - target: {fileID: 4076820050210373795, guid: 6f64fb89521183a418fbe98b8c4cd775,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: aa99aae24ec675f4e86c50df91d8b2c6, type: 2}
     - target: {fileID: 6786332323556292285, guid: 6f64fb89521183a418fbe98b8c4cd775,
         type: 3}
       propertyPath: m_RootOrder

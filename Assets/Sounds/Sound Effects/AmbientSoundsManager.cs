@@ -1,46 +1,78 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class AmbientSoundsManager : MonoBehaviour
 {
-    public List<SoundSchedule> sounds;
+    public List<AudioClip> sounds;
+    
+    public List<AudioSource> audioSources;
 
     [SerializeField]
-    private float timeElapsed;
+    private float randomTimeLower;
+    [SerializeField]
+    private float randomTimeUpper;
+
+    [SerializeField]
+    private float randomVolumeUpper;
+
+    [SerializeField]
+    private float soundPlayedRandomTimeIncreaseAmount;
+
+    [SerializeField]
+    private float randomVolumeLower;
+    
+
+    private AudioClip lastPlayedSound;
+    
+    [SerializeField]
+    private float cooldownTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        cooldownTime = 5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timeElapsed += Time.deltaTime;
+        cooldownTime -= Time.deltaTime;
 
-        if (sounds.Count == 0) { return; }
-
-        if (timeElapsed > sounds[0].timeToPlay)
+        if (cooldownTime < 0f)
         {
-            
-            Debug.Log("Playing sound: " + sounds[0].clip.name);
-            // Play sound
-            sounds[0].sourceToPlayAt.PlayOneShot(sounds[0].clip, sounds[0].volume);
+            PlayRandomSound();
+            cooldownTime = UnityEngine.Random.Range(randomTimeLower, randomTimeUpper);
+            randomTimeUpper += soundPlayedRandomTimeIncreaseAmount;
 
-            // Remove from list
-            sounds.RemoveAt(0);
         }
     }
-}
 
-[Serializable]
-public class SoundSchedule
-{
-    public AudioClip clip;
-    public AudioSource sourceToPlayAt;
-    public float timeToPlay;
-    public float volume;
+    private AudioSource GetRandomAudioSource()
+    {
+        return audioSources[UnityEngine.Random.Range(0,audioSources.Count)];
+    }
+
+    private AudioClip GetRandomSound()
+    {
+        while (true)
+        {
+            AudioClip clip = sounds[UnityEngine.Random.Range(0, sounds.Count)];
+            if (clip != lastPlayedSound)
+            {
+                lastPlayedSound = clip;
+                return clip;
+            }
+        }
+    }
+
+    private float GetRandomVolume()
+    {
+        return UnityEngine.Random.Range(randomVolumeLower, randomVolumeUpper);
+    }
+
+    private void PlayRandomSound()
+    {
+        GetRandomAudioSource().PlayOneShot(GetRandomSound(), GetRandomVolume());
+    }
 }
