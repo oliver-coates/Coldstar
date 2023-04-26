@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class nitrogenGun : MonoBehaviour
+public class freezableScript : MonoBehaviour
 {
-    private bool isOn = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,14 +13,11 @@ public class nitrogenGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isOn == true)
-        {
-            
-        }
+        
     }
 
-    void triggerPulled()
+    public void Freeze()
     {
-        isOn = true;
+        gameObject.SetActive(false);
     }
 }
