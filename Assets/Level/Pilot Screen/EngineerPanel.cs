@@ -20,6 +20,7 @@ public class EngineerPanel : MonoBehaviour
     public bool killSwitchSelected = false;
     public bool safetyChipDisabled = false;
     public bool engineerKilled = false;
+    public bool engineFixed = false;
 
     public FadeToBlackScript fade;
 
@@ -60,7 +61,7 @@ public class EngineerPanel : MonoBehaviour
             // Kill Engineer
             StartCoroutine(DeliverVoltage());
         }
-        else
+        else if (engineFixed == false)
         {
             // Activate Neural Link
             StartCoroutine(ActivateNeuralLink());

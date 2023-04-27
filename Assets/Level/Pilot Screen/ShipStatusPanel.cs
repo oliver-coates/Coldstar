@@ -12,6 +12,9 @@ public class ShipStatusPanel : MonoBehaviour
     public CockpitPanel warningScreen;
     public FadeToBlackScript fade;
 
+    public AudioSource engineerAudioSource;
+    public AudioClip engineFixedClip;
+
     public bool shownDiagnosis;
 
     public bool allowKeyboard;
@@ -123,6 +126,8 @@ public class ShipStatusPanel : MonoBehaviour
 
         yield return new WaitForSeconds(typewriter.Type("Autopilot underway...", runDiagnosisText, 0.02f));
         yield return new WaitForSeconds(0.5f);
+
+        engineerAudioSource.PlayOneShot(engineFixedClip);
 
         StartCoroutine(fade.PlayerWin());
     }

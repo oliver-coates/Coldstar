@@ -112,6 +112,22 @@ public class PilotScreen : MonoBehaviour
     public void EngineFixed()
     {
         shipStatusPanel.engineFixed = true;
+        StartCoroutine(returnPlayer());
+
+        engineerPanel.neuralLinkMessage.SetActive(false);
+        engineerPanel.allowKeyboard = false;
+        engineerPanel.engineFixed = true;
+
+        EnableKeyboard(false);
+        EnableScreenSwitch(true);
+    }
+
+    private IEnumerator returnPlayer()
+    {
+        engineerPanel.fade.StartCoroutine(engineerPanel.fade.FadeToBlack());
+        yield return new WaitForSeconds(5f);
+        engineerPanel.XRorigin.transform.position = engineerPanel.cockpitAnchor.position;
+        engineerPanel.fade.StartCoroutine(engineerPanel.fade.FadeOut());
     }
 
     /*private void Update()
@@ -121,5 +137,7 @@ public class PilotScreen : MonoBehaviour
             EngineFixed();
         }
     }*/
+
+    
 
 }

@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class checkPipe : MonoBehaviour
 {
+    public ButtonScript startEngineButton;
     [SerializeField] private XRSocketInteractor socket;
     private IXRSelectInteractable objName;
     // Start is called before the first frame update
@@ -16,7 +17,7 @@ public class checkPipe : MonoBehaviour
     {
         objName = socket.GetOldestInteractableSelected();
         if (objName.transform.name == "goodPipe"){
-            // win game
+            startEngineButton.AllowButton();
         }  
     }
 }
