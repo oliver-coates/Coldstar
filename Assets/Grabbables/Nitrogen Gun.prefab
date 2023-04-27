@@ -424,7 +424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nozzle: {fileID: 1633839921455178022}
-  maxDistance: 1
+  maxDistance: 1.1
   freezable:
     serializedVersion: 2
     m_Bits: 8
@@ -652,7 +652,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6650944, g: 0.9702307, b: 1, a: 0.31764707}
+      maxColor: {r: 0.616545, g: 0.78444284, b: 0.8018868, a: 0.31764707}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
