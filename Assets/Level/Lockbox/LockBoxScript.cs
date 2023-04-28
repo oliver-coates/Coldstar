@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LockBoxScript : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class LockBoxScript : MonoBehaviour
     public bool debug;
 
     public Rigidbody rb;
+
+    public UnityEvent openEvent;
 
     private void Update() {
         if (debug)
@@ -25,5 +28,7 @@ public class LockBoxScript : MonoBehaviour
         rb.AddTorque(rb.transform.forward * 0.1f, ForceMode.Impulse);
         rb.AddTorque(rb.transform.right * 0.05f, ForceMode.Impulse);
         rb.AddTorque(rb.transform.up * -0.08f, ForceMode.Impulse);
+
+        openEvent.Invoke();
     }
 }

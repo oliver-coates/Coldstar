@@ -5,22 +5,29 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class freezableScript : MonoBehaviour
 {
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    bool frozen = false;
+    public panelMaster panelScript;
+    public AudioSource audioSource;
+    public AudioClip breakSound;
 
     public void Freeze()
     {
+        if (frozen)
+        {
+            return;
+        }
+
+        audioSource.PlayOneShot(breakSound);
+
+        frozen = true;
+        panelScript.removeBolt();
         gameObject.GetComponent<XRGrabInteractable>().enabled = true;
-        gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        
+        Rigidbody rb =  gameObject.GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+
+        rb.AddForce(transform.up / 3f, ForceMode.Impulse);
+
+    
     }
 }

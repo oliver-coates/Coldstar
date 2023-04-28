@@ -9,6 +9,9 @@ public class ButtonScript : MonoBehaviour
     public float flickerTime;
     private bool flickering;
 
+    public AudioClip buttonBeep;
+    public AudioSource audioSource;
+
     [SerializeField]
     private bool allowed;
     public bool pressed;
@@ -52,6 +55,7 @@ public class ButtonScript : MonoBehaviour
     {
         yield return new WaitForSeconds(flickerTime);
         buttonLight.enabled = true;
+        audioSource.PlayOneShot(buttonBeep);
         yield return new WaitForSeconds(flickerTime);
         buttonLight.enabled = false;
 

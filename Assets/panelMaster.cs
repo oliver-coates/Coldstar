@@ -7,9 +7,12 @@ public class panelMaster : MonoBehaviour
     [SerializeField] private float boltCount = 4;
     public Rigidbody rb;
     public float pushForce;
+
+    private bool opened;
+
     void Update()
     {
-        if (boltCount <= 0){
+        if (boltCount <= 0 && !opened){
             Open();
         }
     }
@@ -20,6 +23,7 @@ public class panelMaster : MonoBehaviour
 
     public void Open()
     {
+        opened = true;  
         rb.isKinematic = false;
         rb.AddForce(rb.gameObject.transform.forward * pushForce, ForceMode.Impulse);
         rb.AddTorque(rb.transform.forward * 0.1f, ForceMode.Impulse);

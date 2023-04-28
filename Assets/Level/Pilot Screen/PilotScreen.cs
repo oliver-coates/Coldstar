@@ -111,6 +111,9 @@ public class PilotScreen : MonoBehaviour
 
     public void EngineFixed()
     {
+        // Play ship start sound
+        engineerPanel.engineerAudiosource.PlayOneShot(engineerPanel.fade.winSound);
+
         shipStatusPanel.engineFixed = true;
         StartCoroutine(returnPlayer());
 
@@ -124,6 +127,7 @@ public class PilotScreen : MonoBehaviour
 
     private IEnumerator returnPlayer()
     {
+        yield return new WaitForSeconds(7f);
         engineerPanel.fade.StartCoroutine(engineerPanel.fade.FadeToBlack());
         yield return new WaitForSeconds(5f);
         engineerPanel.XRorigin.transform.position = engineerPanel.cockpitAnchor.position;
